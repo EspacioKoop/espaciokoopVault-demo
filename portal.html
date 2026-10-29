@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>espaciokoopVault — Portal de Emergencia</title>
+<style>
+:root {
+  --bg:#111; --fg:#eee; --dim:#aaa; --border:#2a2a2a;
+  --es:#22c55e; --en:#60a5fa; --warn:#ef4444;
+  --surface:#1a1a1a; --surface2:#222; --accent:#facc15;
+}
+@media (prefers-color-scheme: light) {
+  :root { --bg:#f8f8f5; --fg:#111; --dim:#555; --border:#ccc; --surface:#fff; --surface2:#f0f0ed; }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sans-serif;max-width:900px;margin:0 auto;padding:16px;line-height:1.5}
+
+/* Header */
+.hdr{display:flex;align-items:baseline;gap:12px;border-bottom:3px solid var(--fg);padding-bottom:6px;margin-bottom:4px}
+h1{font-size:1.4rem;font-weight:900;letter-spacing:.05em}
+.ver{font-size:.7rem;font-family:monospace;color:var(--dim)}
+.sub{color:var(--dim);font-size:.78rem;margin-bottom:12px;font-family:monospace}
+
+/* Warning */
+.warn{border:2px solid var(--warn);padding:9px 12px;margin-bottom:14px;color:var(--warn);font-size:.85rem;font-weight:700;border-radius:4px}
+
+/* Quick links */
+.quick{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--fg);padding:8px 16px;text-decoration:none;color:var(--fg);font-size:.9rem;font-weight:700;font-family:monospace;border-radius:4px;transition:all .15s}
+.btn:hover{background:var(--fg);color:var(--bg)}
+.btn.primary{border-color:var(--warn);color:var(--warn)}
+.btn.primary:hover{background:var(--warn);color:#fff}
+
+/* Search */
+.search-wrap{position:relative;margin-bottom:16px}
+#search{width:100%;padding:10px 40px 10px 14px;background:var(--surface);border:2px solid var(--border);border-radius:6px;color:var(--fg);font-size:1rem;outline:none;transition:border-color .15s}
+#search:focus{border-color:var(--accent)}
+#search::placeholder{color:var(--dim)}
+.search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--dim);cursor:pointer;font-size:1.1rem;display:none}
+#search:not(:placeholder-shown)~.search-clear{display:block}
+#search-count{font-size:.75rem;color:var(--dim);margin-bottom:12px;font-family:monospace;min-height:1.2em}
+
+/* Sections */
+h2{font-size:.85rem;font-family:monospace;letter-spacing:.12em;margin:18px 0 8px;padding-bottom:3px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.es-h2{color:var(--es);border-color:var(--es)}
+.en-h2{color:var(--en);border-color:var(--en)}
+.sect-count{font-size:.65rem;opacity:.6}
+
+/* Table */
+.resource-table{width:100%;border-collapse:collapse;margin-bottom:4px;font-size:.87rem}
+.resource-table tr{border-bottom:1px solid var(--border);transition:background .1s}
+.resource-table tr:hover{background:var(--surface2)}
+.resource-table tr[hidden]{display:none}
+.resource-table td{padding:7px 6px;vertical-align:top}
+.resource-table td:first-child{font-weight:700;width:34%}
+.resource-table td:nth-child(2){color:var(--dim);font-size:.82rem}
+.resource-table td:last-child{color:var(--dim);font-size:.72rem;white-space:nowrap;text-align:right;padding-left:8px}
+.tag{font-family:monospace;font-size:.62rem;font-weight:700;display:block;opacity:.85}
+.es-tag{color:var(--es)}
+.en-tag{color:var(--en)}
+a{color:inherit;text-decoration:none}
+a:hover td:first-child{text-decoration:underline}
+
+/* Section hidden */
+.section-block[data-empty]>h2::after{content:" (0)";opacity:.4}
+
+/* Footer */
+.footer{margin-top:20px;color:var(--dim);font-size:.7rem;font-family:monospace;text-align:center;border-top:1px solid var(--border);padding-top:8px}
+.kbd{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:1px 5px;font-family:monospace;font-size:.75rem}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>⚡ ESPACIOKOOP VAULT</h1>
+  <span class="ver">v2.0 · 2026-06</span>
+</div>
+<div class="sub">Portal de Emergencia · Sin internet</div>
+
+<div class="warn">
+  🚨 EMERGENCIA: Usa <strong>:8085</strong> — arranca en &lt;60 seg. Busca primero en ESPAÑOL.
+  Si la web cae por completo: abre <strong>:8085</strong> directamente, no este portal.
+</div>
+
+<div class="quick">
+  <a class="btn primary" href="http://HOST:8085">⚡ :8085 EMERGENCIA</a>
+  <a class="btn" href="http://HOST:8089">📚 :8089 COMPLETO</a>
+</div>
+
+<div class="search-wrap">
+  <input id="search" type="search" placeholder="Buscar recurso… (/ para enfocar, ESC para limpiar)" autocomplete="off" spellcheck="false" />
+  <button class="search-clear" onclick="clearSearch()">✕</button>
+</div>
+<div id="search-count"></div>
+
+<!-- ─── ES ─────────────────────────────────────────────────── -->
+<div class="section-block" id="sect-es">
+<h2 class="es-h2">[ ES ] ESPAÑOL — Busca aquí primero <span class="sect-count"></span></h2>
+<table class="resource-table" id="tbl-es">
+<tr data-kw="enciclopedia wikipedia conocimiento articulos"><td><a href="http://HOST:8089/wikipedia_es_all/">📖 Enciclopedia<span class="es-tag">WIKIPEDIA ES</span></a></td><td>Todo el conocimiento humano. 2 millones de artículos.</td><td>38 GB</td></tr>
+<tr data-kw="medicina salud enfermedades sintomas medicamentos"><td><a href="http://HOST:8085/medlineplus.gov_es_all/">⚕️ Medicina y Salud<span class="es-tag">MEDLINEPLUS NIH</span></a></td><td>Enfermedades, síntomas, medicamentos. Fuente oficial médica.</td><td>1.6 GB</td></tr>
+<tr data-kw="emergencias terremoto inundacion incendio evacuacion protocolo"><td><a href="http://HOST:8085/www.ready.gov_es/">🚨 Emergencias FEMA<span class="es-tag">READY.GOV</span></a></td><td>Terremoto, inundación, incendio, evacuación. Protocolo oficial FEMA.</td><td>2.4 GB</td></tr>
+<tr data-kw="reparaciones moviles ordenadores electrodomesticos guias paso"><td><a href="http://HOST:8085/ifixit_es_all/">🔧 Reparaciones<span class="es-tag">IFIXIT ES</span></a></td><td>Guías paso a paso para reparar móviles, ordenadores y electrodomésticos.</td><td>3.4 GB</td></tr>
+<tr data-kw="manuales oficios electricidad fontaneria carpinteria mecanica"><td><a href="http://HOST:8085/wikibooks_es_all/">🛠️ Manuales y Oficios<span class="es-tag">WIKIBOOKS ES</span></a></td><td>Electricidad, fontanería, carpintería, mecánica básica.</td><td>333 MB</td></tr>
+<tr data-kw="medicina articulos anatomia patologias cirugias tecnico"><td><a href="http://HOST:8085/wikipedia_es_medicine/">🧬 Artículos Médicos<span class="es-tag">WIKI MEDICINA</span></a></td><td>Anatomía, patologías, cirugías. Más técnico que MedlinePlus.</td><td>619 MB</td></tr>
+<tr data-kw="libros clasicos gutenberg ciencia filosofia historia"><td><a href="http://HOST:8085/gutenberg_es_all/">📚 Libros Clásicos<span class="es-tag">GUTENBERG ES</span></a></td><td>+1.000 libros: ciencia, medicina histórica, filosofía.</td><td>1.7 GB</td></tr>
+<tr data-kw="rutas movilidad ciudades transporte gps viaje"><td><a href="http://HOST:8085/wikivoyage_es_all/">🗺️ Rutas y Movilidad<span class="es-tag">WIKIVOYAGE ES</span></a></td><td>Ciudades, rutas de transporte. Para moverse sin GPS.</td><td>145 MB</td></tr>
+<tr data-kw="biologia botanica plantas hongos flora comestible medicinal"><td><a href="http://HOST:8085/wikipedia_es_molcell/">🌿 Biología y Botánica<span class="es-tag">WIKI BIOLOGÍA</span></a></td><td>Plantas, hongos. Para identificar flora comestible o medicinal.</td><td>203 MB</td></tr>
+<tr data-kw="diccionario definiciones terminos tecnicos medicos cientificos"><td><a href="http://HOST:8085/wiktionary_es_all/">📖 Diccionario<span class="es-tag">WIKTIONARY ES</span></a></td><td>Definiciones y términos técnicos, médicos y científicos.</td><td>951 MB</td></tr>
+<tr data-kw="fisica electricidad mecanica termodinamica"><td><a href="http://HOST:8085/wikipedia_es_physics/">⚡ Física<span class="es-tag">WIKI FÍSICA</span></a></td><td>Electricidad, mecánica, termodinámica.</td><td>458 MB</td></tr>
+<tr data-kw="quimica reacciones materiales compuestos"><td><a href="http://HOST:8085/wikipedia_es_chemistry/">🧪 Química<span class="es-tag">WIKI QUÍMICA</span></a></td><td>Reacciones, materiales, compuestos.</td><td>163 MB</td></tr>
+<tr data-kw="matematicas calculo estadistica geometria"><td><a href="http://HOST:8085/wikipedia_es_mathematics/">🔢 Matemáticas<span class="es-tag">WIKI MATEMÁTICAS</span></a></td><td>Cálculo, estadística, geometría.</td><td>442 MB</td></tr>
+<tr data-kw="geografia climas rios ecosistemas entorno"><td><a href="http://HOST:8085/wikipedia_es_geography/">🌍 Geografía<span class="es-tag">WIKI GEOGRAFÍA</span></a></td><td>Climas, ríos, ecosistemas. Para conocer el entorno.</td><td>373 GB</td></tr>
+<tr data-kw="historia supervivencia tecnicas historicas"><td><a href="http://HOST:8085/wikipedia_es_history/">📜 Historia<span class="es-tag">WIKI HISTORIA</span></a></td><td>Historia universal. Técnicas históricas de supervivencia.</td><td>802 MB</td></tr>
+<tr data-kw="informatica redes sistemas equipos sin internet"><td><a href="http://HOST:8085/wikipedia_es_computer/">💻 Informática<span class="es-tag">WIKI INFORMÁTICA</span></a></td><td>Redes, sistemas. Para mantener equipos sin internet.</td><td>229 MB</td></tr>
+<tr data-kw="clima cambio climatico ecosistemas"><td><a href="http://HOST:8085/wikipedia_es_climate-change/">🌡️ Clima<span class="es-tag">WIKI CLIMA</span></a></td><td>Cambio climático, ecosistemas.</td><td>68 MB</td></tr>
+<tr data-kw="simulaciones cientificas fisica quimica biologia interactiva phet"><td><a href="http://HOST:8085/phet_es_all/">🔬 Simulaciones Científicas<span class="es-tag">PHET ES</span></a></td><td>Física, química, biología interactiva.</td><td>102 MB</td></tr>
+<tr data-kw="programacion aprender codigo electronica freecodecamp"><td><a href="http://HOST:8085/freecodecamp_es_all/">💻 Programación<span class="es-tag">FREECODECAMP ES</span></a></td><td>Aprende a programar para montar sistemas con electrónica.</td><td>8 MB</td></tr>
+</table>
+</div>
+
+<!-- ─── EN ─────────────────────────────────────────────────── -->
+<div class="section-block" id="sect-en">
+<h2 class="en-h2">[ EN ] INGLÉS — Lo que no existe en español <span class="sect-count"></span></h2>
+<table class="resource-table" id="tbl-en">
+<tr data-kw="post desastre agua refugio alimentos primeros auxilios catastrofe"><td><a href="http://HOST:8085/zimgit-post-disaster_en/">⚠️ Post-Desastre<span class="en-tag">ZIMGIT</span></a></td><td>Agua segura, refugio, alimentos y primeros auxilios tras una catástrofe.</td><td>615 MB</td></tr>
+<tr data-kw="supervivencia outdoor orientacion fuego senal caza pesca naturaleza"><td><a href="http://HOST:8085/outdoors.stackexchange.com_en_all/">🏕️ Supervivencia Outdoor<span class="en-tag">OUTDOORS SE</span></a></td><td>Orientación sin GPS, refugio, fuego, señalización, caza y pesca.</td><td>136 MB</td></tr>
+<tr data-kw="urgencias medicas protocolos emergencia grave sin medico"><td><a href="http://HOST:8085/wikem_en_all/">🏥 Urgencias Médicas<span class="en-tag">WIKEM</span></a></td><td>Protocolos reales de urgencias para situaciones graves sin médico.</td><td>46 MB</td></tr>
+<tr data-kw="nudos ilustraciones supervivencia navegacion"><td><a href="http://HOST:8085/zimgit-knots_en/">🪢 Nudos<span class="en-tag">ZIMGIT KNOTS</span></a></td><td>Enciclopedia de nudos con ilustraciones. Supervivencia, navegación.</td><td>27 MB</td></tr>
+<tr data-kw="construccion hogar electricidad fontaneria carpinteria diy bricolaje"><td><a href="http://HOST:8085/diy.stackexchange.com_en_all/">🏠 Construcción y Hogar<span class="en-tag">DIY SE</span></a></td><td>Electricidad, fontanería, carpintería. Miles de Q&amp;A reales.</td><td>1.9 GB</td></tr>
+<tr data-kw="mecanica vehiculos coches reparacion taller diagnostico"><td><a href="http://HOST:8085/mechanics.stackexchange.com_en_all/">🚗 Mecánica Vehículos<span class="en-tag">MECHANICS SE</span></a></td><td>Reparación y mantenimiento de coches. Diagnóstico sin taller.</td><td>323 MB</td></tr>
+<tr data-kw="ingenieria estructuras materiales sistemas infraestructura basica"><td><a href="http://HOST:8085/engineering.stackexchange.com_en_all/">⚙️ Ingeniería Práctica<span class="en-tag">ENGINEERING SE</span></a></td><td>Estructuras, materiales, sistemas. Para construir infraestructura básica.</td><td>242 MB</td></tr>
+<tr data-kw="agricultura huerto cultivos plagas suelos comida producir"><td><a href="http://HOST:8085/gardening.stackexchange.com_en_all/">🌱 Agricultura y Huerto<span class="en-tag">GARDENING SE</span></a></td><td>Cultivos, plagas, suelos. Para producir comida.</td><td>882 MB</td></tr>
+<tr data-kw="energia solar off-grid electricidad sin red paneles"><td><a href="http://HOST:8085/energypedia_en_all/">☀️ Energía Solar<span class="en-tag">ENERGYPEDIA</span></a></td><td>Sistemas solares y off-grid. Electricidad sin red.</td><td>762 MB</td></tr>
+<tr data-kw="tecnologia sostenible construccion permacultura agua saneamiento barato"><td><a href="http://HOST:8085/appropedia_en_all/">🌿 Tecnología Sostenible<span class="en-tag">APPROPEDIA</span></a></td><td>Construcción sostenible, permacultura, agua y saneamiento barato.</td><td>555 MB</td></tr>
+<tr data-kw="cocina conservas fermentacion encurtidos ahumado alimentos conservar"><td><a href="http://HOST:8085/cooking.stackexchange.com_en_all/">🍳 Cocina y Conservas<span class="en-tag">COOKING SE</span></a></td><td>Fermentación, encurtidos, ahumado. Para que la comida dure.</td><td>226 MB</td></tr>
+<tr data-kw="conservar alimentos enlatar salazón deshidratacion sin electricidad"><td><a href="http://HOST:8085/zimgit-food-preparation_en/">🥫 Conservar Alimentos<span class="en-tag">ZIMGIT FOOD</span></a></td><td>Enlatado, salazón, deshidratación. Sin electricidad.</td><td>93 MB</td></tr>
+<tr data-kw="agua saneamiento purificacion filtrado pozos sin infraestructura"><td><a href="http://HOST:8085/zimgit-water_en/">💧 Agua y Saneamiento<span class="en-tag">ZIMGIT WATER</span></a></td><td>Purificación, filtrado, pozos. Agua segura sin infraestructura.</td><td>20 MB</td></tr>
+<tr data-kw="ciencias medicas preguntas avanzadas profesionales"><td><a href="http://HOST:8085/medicalsciences.stackexchange.com_en_all/">🔬 Ciencias Médicas<span class="en-tag">MEDICAL SE</span></a></td><td>Preguntas médicas avanzadas respondidas por profesionales.</td><td>58 MB</td></tr>
+<tr data-kw="reparacion electronica dispositivos circuitos soldadura"><td><a href="http://HOST:8085/restarters_en_all/">🔌 Reparación Electrónica<span class="en-tag">RESTARTERS</span></a></td><td>Reparar dispositivos, circuitos, soldadura.</td><td>17 MB</td></tr>
+<tr data-kw="supervivencia tecnicas refugio señalizacion fuego agua naturaleza"><td><a href="http://HOST:8085/survivors_en_all/">🏕️ Técnicas Supervivencia<span class="en-tag">SURVIVORS</span></a></td><td>Refugio, señalización, fuego y agua en naturaleza.</td><td>118 MB</td></tr>
+</table>
+</div>
+
+<div class="footer">
+  espaciokoopVault v2.0 &nbsp;·&nbsp; ⚡ :8085 crítico (~18 GB, &lt;60 s) &nbsp;·&nbsp; 📚 :8089 completo (~57 GB) &nbsp;·&nbsp;
+  Sin internet · Sin login &nbsp;·&nbsp;
+  Buscar: <kbd class="kbd">/</kbd> enfocar &nbsp; <kbd class="kbd">ESC</kbd> limpiar
+</div>
+
+<script>
+const input = document.getElementById('search');
+const counter = document.getElementById('search-count');
+
+// Keyboard shortcuts
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement !== input) { e.preventDefault(); input.focus(); }
+  if (e.key === 'Escape') { clearSearch(); input.blur(); }
+});
+
+function clearSearch() {
+  input.value = '';
+  runSearch('');
+}
+
+function runSearch(q) {
+  const term = q.toLowerCase().trim();
+  let total = 0, visible = 0;
+
+  document.querySelectorAll('.resource-table tr').forEach(tr => {
+    total++;
+    const kw   = (tr.dataset.kw || '').toLowerCase();
+    const text = (tr.textContent || '').toLowerCase();
+    const show = !term || kw.includes(term) || text.includes(term);
+    tr.hidden = !show;
+    if (show) visible++;
+  });
+
+  // Section empty state
+  document.querySelectorAll('.section-block').forEach(sect => {
+    const tbl    = sect.querySelector('.resource-table');
+    const rows   = tbl ? [...tbl.querySelectorAll('tr')] : [];
+    const visIdx = rows.filter(r => !r.hidden).length;
+    sect.toggleAttribute('data-empty', term && visIdx === 0);
+    const cnt = sect.querySelector('.sect-count');
+    if (cnt) cnt.textContent = term ? `(${visIdx})` : '';
+  });
+
+  counter.textContent = term ? `${visible} de ${total} recursos` : '';
+}
+
+input.addEventListener('input', e => runSearch(e.target.value));
+</script>
+<script>
+// Los enlaces apuntan a «HOST»: se cambia por el nombre o la IP con la que se ha abierto el portal,
+// así funciona igual en cualquier casa sin editar nada.
+document.querySelectorAll('a[href*="//HOST:"]').forEach(a => { a.href = a.getAttribute('href').replace('//HOST:', '//' + location.hostname + ':'); });
+</script>
+</body>
+</html>

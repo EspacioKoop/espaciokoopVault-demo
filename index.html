@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121419" media="(prefers-color-scheme: dark)">
+<title>espaciokoopVault · inicio</title>
+<style>
+:root {
+  --fondo: #f4f5f9; --tarjeta: #fff; --texto: #1b1e2b; --suave: #5f6681; --linea: #e1e4ee;
+  --verde: #12a065; --verde-f: #e3f6ec; --rojo: #dc3d52; --rojo-f: #fde9ec; --ambar: #c98200; --ambar-f: #fdf2dc;
+  --azul: #2c74d8; --azul-f: #e6effc; --morado: #7356e8; --morado-f: #eeeafd;
+  --sombra: 0 1px 2px rgba(20,24,40,.06), 0 6px 18px rgba(20,24,40,.07);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --fondo: #121419; --tarjeta: #1c1f28; --texto: #eef0f6; --suave: #a3a9bf; --linea: #2b2f3b;
+    --verde-f: #15362a; --rojo-f: #3d1b22; --ambar-f: #3a2b10; --azul-f: #172a45; --morado-f: #2a2346; --sombra: none; }
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: var(--fondo); color: var(--texto); font: 17px/1.45 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+.envoltura { max-width: 760px; margin: 0 auto; padding: 16px 16px 60px; }
+h1 { font-size: 24px; margin: 4px 0 0; }
+.casa { color: var(--suave); font-size: 15px; }
+h2 { font-size: 19px; margin: 28px 0 10px; }
+.aviso { border-radius: 18px; padding: 18px; margin: 16px 0; font-size: 18px; font-weight: 700; display: flex; gap: 14px; align-items: center; box-shadow: var(--sombra); }
+.aviso .ico { font-size: 34px; }
+.aviso small { display: block; font-weight: 500; font-size: 15px; margin-top: 2px; }
+.aviso.bien { background: var(--verde-f); color: var(--verde); }
+.aviso.mal { background: var(--rojo-f); color: var(--rojo); }
+.aviso.medio { background: var(--ambar-f); color: var(--ambar); }
+.botones { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (min-width: 640px) { .botones { grid-template-columns: repeat(3, 1fr); } }
+.boton { background: var(--tarjeta); border: 0; border-radius: 18px; padding: 18px 14px; min-height: 120px; text-align: left; color: var(--texto);
+  font: 700 17px system-ui, sans-serif; cursor: pointer; box-shadow: var(--sombra); text-decoration: none; display: flex; flex-direction: column; gap: 6px; }
+.boton .ico { font-size: 32px; }
+.boton small { font-weight: 500; font-size: 14px; color: var(--suave); }
+.boton.apagado { opacity: .5; }
+.boton.rojo { background: var(--rojo); color: #fff; } .boton.rojo small { color: #ffe3e7; }
+.boton.verde { background: var(--verde); color: #fff; } .boton.verde small { color: #def7ea; }
+.lista { background: var(--tarjeta); border-radius: 18px; box-shadow: var(--sombra); overflow: hidden; }
+.fila { display: flex; gap: 12px; align-items: center; padding: 13px 16px; border-bottom: 1px solid var(--linea); }
+.fila:last-child { border-bottom: 0; }
+.punto { width: 14px; height: 14px; border-radius: 50%; flex: 0 0 14px; background: var(--suave); }
+.punto.si { background: var(--verde); } .punto.no { background: var(--rojo); } .punto.duerme { background: var(--ambar); }
+.fila .que { flex: 1; } .fila .que small { display: block; color: var(--suave); font-size: 14px; }
+.guia { background: var(--tarjeta); border-radius: 18px; box-shadow: var(--sombra); margin-bottom: 10px; }
+.guia summary { padding: 16px; font-weight: 700; cursor: pointer; list-style: none; display: flex; gap: 10px; align-items: center; }
+.guia summary::after { content: '›'; margin-left: auto; color: var(--suave); font-size: 22px; transition: transform .15s; }
+.guia[open] summary::after { transform: rotate(90deg); }
+.guia .cuerpo { padding: 0 16px 16px; }
+.guia ol, .guia ul { margin: 6px 0; padding-left: 22px; } .guia li { margin: 6px 0; }
+.guia .fuente { font-size: 14px; color: var(--suave); }
+.guia a { color: var(--azul); }
+.importante { background: var(--rojo-f); color: var(--rojo); border-radius: 12px; padding: 10px 12px; font-weight: 700; margin: 8px 0; }
+.pie { color: var(--suave); font-size: 14px; text-align: center; margin-top: 30px; }
+.ventana { position: fixed; inset: 0; background: rgba(10,12,20,.55); display: none; align-items: flex-end; justify-content: center; z-index: 9; }
+.ventana.abierta { display: flex; }
+.ventana .caja { background: var(--tarjeta); width: 100%; max-width: 560px; border-radius: 20px 20px 0 0; padding: 20px 18px 26px; }
+.ventana .caja p { margin: 8px 0 16px; color: var(--suave); }
+.ventana .caja .acciones { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ventana button { border: 0; border-radius: 14px; padding: 15px; font: 700 17px system-ui; cursor: pointer; background: var(--linea); color: var(--texto); }
+.ventana button.si { background: var(--rojo); color: #fff; }
+.demo { background: var(--morado-f); color: var(--morado); border-radius: 12px; padding: 10px 14px; font-size: 14px; font-weight: 600; margin-top: 10px; display: none; }
+</style>
+</head>
+<body>
+<div class="envoltura">
+  <h1>🛟 espaciokoopVault</h1>
+  <div class="casa" id="casa">Cargando…</div>
+  <div class="demo" id="demo">Modo demostración: datos de ejemplo, no de una casa real. <a href="novedades.html">Ver novedades y comentar →</a></div>
+
+  <div class="aviso medio" id="aviso"><span class="ico">⏳</span><div>Comprobando la casa…</div></div>
+
+  <h2>¿Qué necesitas?</h2>
+  <div class="botones">
+    <a class="boton" id="b-wiki" target="_blank"><span class="ico">📚</span>Buscar en la wiki<small>Wikipedia, medicina, reparaciones… sin internet</small></a>
+    <a class="boton" id="b-ia" target="_blank"><span class="ico">🤖</span>Preguntar a la IA<small>La IA de casa, sin internet</small></a>
+    <a class="boton" id="b-chat" target="_blank"><span class="ico">💬</span>Chat de casa<small>Hablar entre nosotros sin internet</small></a>
+    <a class="boton" href="#guias" onclick="abrirGuia('auxilios')"><span class="ico">🩹</span>Primeros auxilios<small>Qué hacer ya, paso a paso</small></a>
+    <a class="boton" href="#guias" onclick="abrirGuia('agua')"><span class="ico">💧</span>Agua y comida<small>Potabilizar y conservar</small></a>
+    <a class="boton" href="#guias" onclick="abrirGuia('comunicar')"><span class="ico">📡</span>Comunicarnos<small>Walkies, malla, radio</small></a>
+    <a class="boton" href="#estado"><span class="ico">🔧</span>Estado de la casa<small>Qué funciona y qué no</small></a>
+    <button class="boton rojo" id="b-emergencia"><span class="ico">🚨</span><span id="t-emergencia">Activar modo emergencia</span><small id="s-emergencia">Todo pasa a funcionar sin internet</small></button>
+  </div>
+
+  <h2 id="estado">Estado de la casa</h2>
+  <div class="lista" id="lista"></div>
+
+  <h2 id="guias">Guías rápidas</h2>
+  <details class="guia" id="g-auxilios"><summary>🩹 Primeros auxilios</summary><div class="cuerpo">
+    <div class="importante">Si alguien no respira, sangra mucho o está inconsciente: llama al 112 si hay forma, y haz lo de abajo mientras llega ayuda.</div>
+    <ol>
+      <li><b>Protege:</b> que no haya más peligro para ti ni para la persona (tráfico, fuego, corriente).</li>
+      <li><b>Avisa:</b> 112. Di dónde estáis y qué ha pasado.</li>
+      <li><b>Socorre:</b> si no responde y no respira con normalidad, empieza la reanimación: manos en el centro del pecho, brazos rectos, compresiones fuertes y rápidas (unas 100-120 por minuto, hundiendo unos 5-6 cm) sin parar hasta que llegue ayuda o se recupere.</li>
+      <li><b>Sangrado fuerte:</b> presiona fuerte la herida con un paño limpio y no lo quites; si empapa, pon otro encima.</li>
+      <li><b>Si respira pero no responde:</b> túmbalo de lado (posición lateral de seguridad) y vigila que siga respirando.</li>
+    </ol>
+    <p class="fuente">Más en la wiki: <a data-wiki="medlineplus.gov_es_all">MedlinePlus en español</a> · <a data-wiki="wikem_en_all">WikEM (urgencias)</a></p>
+  </div></details>
+  <details class="guia" id="g-agua"><summary>💧 Agua y comida</summary><div class="cuerpo">
+    <ol>
+      <li><b>Agua primero:</b> una persona necesita unos 3 litros al día para beber y cocinar. Guarda agua antes de que falte.</li>
+      <li><b>Potabilizar:</b> hervir el agua al menos 1 minuto (3 minutos en alta montaña) es lo más seguro. Si no se puede hervir, lejía sin perfume según la etiqueta y espera 30 minutos.</li>
+      <li><b>Comida:</b> primero lo que se estropea (nevera), después lo congelado y por último las conservas. Una nevera cerrada aguanta frío unas 4 horas sin luz.</li>
+    </ol>
+    <p class="fuente">Más en la wiki: <a data-wiki="zimgit-water_en">Agua y saneamiento</a> · <a data-wiki="zimgit-food-preparation_en">Conservar alimentos</a> · <a data-wiki="www.ready.gov_es">Ready.gov en español</a></p>
+  </div></details>
+  <details class="guia" id="g-comunicar"><summary>📡 Comunicarnos sin internet</summary><div class="cuerpo">
+    <ol>
+      <li><b>En casa:</b> el chat de casa (botón 💬) funciona con el wifi aunque no haya internet.</li>
+      <li><b>Entre móviles cerca:</b> Briar, por Bluetooth y wifi, sin cobertura.</li>
+      <li><b>Walkies PMR446:</b> canal acordado de antemano; hablar corto y decir quién eres.</li>
+      <li><b>Nodos Meshtastic (LoRa):</b> mensajes a varios kilómetros sin infraestructura.</li>
+      <li><b>Punto de encuentro:</b> si no hay forma de comunicarse, id al punto acordado a la hora acordada.</li>
+    </ol>
+  </div></details>
+
+  <div class="pie">Si esta página no carga, abre la copia guardada en tu móvil. · espaciokoopVault, de EspacioKoop</div>
+</div>
+
+<div class="ventana" id="ventana"><div class="caja">
+  <h2 id="v-titulo" style="margin-top:0">¿Activar el modo emergencia?</h2>
+  <p id="v-texto">Los agentes pasarán a la IA de casa, se encenderán la wiki, el chat y la IA local, y se apagará lo que no hace falta. Se puede deshacer con otro botón.</p>
+  <div class="acciones"><button id="v-no">Cancelar</button><button class="si" id="v-si">Sí, activar</button></div>
+</div></div>
+
+<script>window.EKV_DEMO = true;</script>
+<script>
+const $ = s => document.querySelector(s);
+// Datos de ejemplo para la demostración (y si la página se abre sin su servidor).
+const DEMO = {
+  demo: true, casa: 'casa de ejemplo', internet: false, router: true, emergencia: false,
+  equipos: [
+    { nombre: 'Servidor', rol: 'siempre encendido', estado: 'si' },
+    { nombre: 'NAS', rol: 'wiki, modelos y copias', estado: 'si' },
+    { nombre: 'PC con GPU', rol: 'IA grande', estado: 'duerme' },
+    { nombre: 'Portátil', rol: 'IA pequeña', estado: 'si' },
+  ],
+  ia: [{ nombre: 'IA del portátil', responde: true }, { nombre: 'IA del PC con GPU', responde: false }],
+  wiki: { portal: true, emergencia: true, completa: false }, servicios: { ia_web: true, chat: true },
+  enlaces: { wiki: 'portal.html', ia: '#', chat: '#', kiwix: '#' },
+};
+let datos = null;
+
+async function cargar() {
+  const demo = new URLSearchParams(location.search).has('demo') || window.EKV_DEMO;
+  if (!demo) {
+    try { datos = await (await fetch('/api/estado', { cache: 'no-store' })).json(); } catch { datos = null; }
+  }
+  if (!datos) datos = DEMO;
+  pintar();
+}
+
+function pintar() {
+  const d = datos;
+  $('#casa').textContent = d.casa;
+  $('#demo').style.display = d.demo ? 'block' : 'none';
+  const ia = d.ia.some(x => x.responde);
+  const aviso = $('#aviso');
+  if (d.emergencia) { aviso.className = 'aviso medio'; aviso.innerHTML = '<span class="ico">🛟</span><div>Modo emergencia ACTIVADO<small>Todo funciona con lo de casa. Desactívalo cuando vuelva internet.</small></div>'; }
+  else if (d.internet) { aviso.className = 'aviso bien'; aviso.innerHTML = '<span class="ico">✅</span><div>Hay internet. Todo normal.<small>No hace falta el modo emergencia.</small></div>'; }
+  else { aviso.className = 'aviso mal'; aviso.innerHTML = `<span class="ico">⚠️</span><div>No hay internet<small>${ia ? 'La IA de casa funciona. Activa el modo emergencia (botón rojo).' : 'Enciende el equipo con más potencia y activa el modo emergencia.'}</small></div>`; }
+  const e = d.enlaces;
+  $('#b-wiki').href = e.wiki; $('#b-ia').href = e.ia; $('#b-chat').href = e.chat;
+  $('#b-wiki').classList.toggle('apagado', !d.wiki.portal);
+  const sv = d.servicios || { ia_web: ia, chat: true };
+  $('#b-ia').classList.toggle('apagado', !ia || !sv.ia_web);
+  $('#b-chat').classList.toggle('apagado', !sv.chat);
+  document.querySelectorAll('[data-wiki]').forEach(a => { a.href = e.kiwix === '#' ? '#' : `${e.kiwix}/${a.dataset.wiki}/`; a.target = '_blank'; });
+  const b = $('#b-emergencia');
+  b.className = 'boton ' + (d.emergencia ? 'verde' : 'rojo');
+  $('#t-emergencia').textContent = d.emergencia ? 'Desactivar modo emergencia' : 'Activar modo emergencia';
+  $('#s-emergencia').textContent = d.emergencia ? 'Volver a lo normal' : 'Todo pasa a funcionar sin internet';
+  const filas = [
+    ['Internet', d.internet ? 'Funciona' : 'No hay', d.internet ? 'si' : 'no'],
+    ['Red de casa (router)', d.router ? 'Funciona' : 'No responde', d.router ? 'si' : 'no'],
+    ...d.equipos.map(x => [x.nombre, x.rol + (x.estado === 'si' ? '' : x.estado === 'duerme' ? ' · dormido' : ' · no responde'), x.estado]),
+    ...d.ia.map(x => [x.nombre, x.responde ? 'Lista' : 'No responde', x.responde ? 'si' : 'duerme']),
+    ['Wiki offline', d.wiki.portal ? 'Encendida' : 'Apagada (se enciende con el modo emergencia)', d.wiki.portal ? 'si' : 'duerme'],
+  ];
+  $('#lista').innerHTML = filas.map(([n, s, c]) => `<div class="fila"><span class="punto ${c}"></span><div class="que">${n}<small>${s}</small></div></div>`).join('');
+}
+
+function abrirGuia(id) { document.querySelectorAll('.guia').forEach(g => g.open = g.id === 'g-' + id); }
+
+$('#b-emergencia').onclick = () => {
+  const activar = !datos.emergencia;
+  $('#v-titulo').textContent = activar ? '¿Activar el modo emergencia?' : '¿Volver a lo normal?';
+  $('#v-texto').textContent = activar
+    ? 'Los agentes pasarán a la IA de casa, se encenderán la wiki, el chat y la IA local, y se apagará lo que no hace falta. Se puede deshacer con otro botón.'
+    : 'Los agentes vuelven a como estaban antes y se apaga lo de emergencia.';
+  $('#v-si').textContent = activar ? 'Sí, activar' : 'Sí, volver';
+  $('#ventana').classList.add('abierta');
+};
+$('#v-no').onclick = () => $('#ventana').classList.remove('abierta');
+$('#v-si').onclick = async () => {
+  $('#ventana').classList.remove('abierta');
+  if (datos.demo) { datos.emergencia = !datos.emergencia; return pintar(); }
+  const r = await (await fetch(datos.emergencia ? '/api/desactivar' : '/api/activar', { method: 'POST' })).json();
+  alert(r.mensaje || 'Hecho');
+  cargar();
+};
+cargar();
+setInterval(() => { if (!datos || !datos.demo) cargar(); }, 30000);
+</script>
+</body>
+</html>
