@@ -66,6 +66,7 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
 .biblioteca { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin: 10px 0 18px; }
 .libro { display: block; padding: 12px 14px; border-radius: 14px; background: var(--tarjeta, #222); color: inherit; text-decoration: none; box-shadow: var(--sombra); }
 .libro b { display: block; font-size: 17px; } .libro small { display: block; color: var(--suave); font-size: 14px; margin-top: 3px; }
+.ingles { font-size: 13px; opacity: .8; }
 </style>
 </head>
 <body>
@@ -153,7 +154,7 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
       <li><b>Sangrado fuerte:</b> presiona fuerte la herida con un paño limpio y no lo quites; si empapa, pon otro encima.</li>
       <li><b>Si respira pero no responde:</b> túmbalo de lado (posición lateral de seguridad) y vigila que siga respirando.</li>
     </ol>
-    <p class="fuente">Más en la wiki: <a data-wiki="medlineplus.gov_es_all">MedlinePlus en español</a> · <a data-wiki="wikem_en_all">WikEM (urgencias) 🇬🇧</a></p>
+    <p class="fuente">Más en español: <a data-art="medlineplus.gov_es_all/medlineplus.gov/spanish/firstaid.html">Primeros auxilios (MedlinePlus)</a> · <a data-art="medlineplus.gov_es_all/medlineplus.gov/spanish/cpr.html">RCP</a> · <a data-art="medlineplus.gov_es_all/medlineplus.gov/spanish/choking.html">Atragantamiento</a> · <a data-art="medlineplus.gov_es_all/medlineplus.gov/spanish/ency/article/001958.htm">Botiquín</a><br><span class="ingles">En inglés: <a data-wiki="wikem_en_all">WikEM (urgencias) 🇬🇧</a></span></p>
   </div></details>
   <details class="guia" id="g-animales"><summary>🐾 Animales heridos o enfermos</summary><div class="cuerpo">
     <div class="importante">Un animal herido o asustado puede morder aunque sea el tuyo: protégete antes de tocarlo.</div>
@@ -165,7 +166,7 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
       <li><b>Traslado:</b> si puede tener algo roto o una lesión de espalda, muévelo sobre una tabla o una manta tensa, sin doblarlo.</li>
       <li>En cuanto se pueda, veterinario o servicio de urgencias veterinarias.</li>
     </ol>
-    <p class="fuente">Más en la wiki: <a data-wiki="wikivet.net_en_all">WikiVet (veterinaria) 🇬🇧</a> · <a data-wiki="pets.stackexchange.com_en_all">Mascotas 🇬🇧</a></p>
+    <p class="fuente">Más en español: <a data-art="medlineplus.gov_es_all/medlineplus.gov/spanish/animalbites.html">Mordeduras de animales</a> · <a data-art="www.ready.gov_es/www.ready.gov/es/cuidado-de-los-animales">Mascotas en desastres (Ready.gov)</a> · <a data-art="wikipedia_es_all/Medicina_veterinaria">Medicina veterinaria (Wikipedia)</a><br><span class="ingles">En inglés: <a data-wiki="wikivet.net_en_all">WikiVet (veterinaria) 🇬🇧</a> · <a data-wiki="pets.stackexchange.com_en_all">Mascotas 🇬🇧</a></span></p>
   </div></details>
   <details class="guia" id="g-agua"><summary>💧 Agua y comida</summary><div class="cuerpo">
     <ol>
@@ -173,7 +174,7 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
       <li><b>Potabilizar:</b> hervir el agua al menos 1 minuto (3 minutos en alta montaña) es lo más seguro. Si no se puede hervir, lejía sin perfume según la etiqueta y espera 30 minutos.</li>
       <li><b>Comida:</b> primero lo que se estropea (nevera), después lo congelado y por último las conservas. Una nevera cerrada aguanta frío unas 4 horas sin luz.</li>
     </ol>
-    <p class="fuente">Más en la wiki: <a data-wiki="zimgit-water_en">Agua y saneamiento 🇬🇧</a> · <a data-wiki="zimgit-food-preparation_en">Conservar alimentos 🇬🇧</a> · <a data-wiki="www.ready.gov_es">Ready.gov en español</a></p>
+    <p class="fuente">Más en español: <a data-art="www.ready.gov_es/www.ready.gov/es/agua">Agua (Ready.gov)</a> · <a data-art="www.ready.gov_es/www.ready.gov/es/alimentos">Alimentos (Ready.gov)</a> · <a data-art="wikipedia_es_all/Desinfecci%C3%B3n_del_agua_potable">Desinfectar el agua</a> · <a data-art="wikipedia_es_all/Desinfecci%C3%B3n_solar_del_agua">Desinfección solar</a> · <a data-art="wikipedia_es_all/Conservaci%C3%B3n_de_los_alimentos">Conservar alimentos</a><br><span class="ingles">En inglés: <a data-wiki="zimgit-water_en">Agua y saneamiento 🇬🇧</a> · <a data-wiki="zimgit-food-preparation_en">Conservar alimentos 🇬🇧</a></span></p>
   </div></details>
   <details class="guia" id="g-comunicar"><summary>📡 Comunicarnos sin internet</summary><div class="cuerpo">
     <ol>
@@ -237,6 +238,7 @@ function pintar() {
   $('#b-ia').classList.toggle('apagado', !ia || !sv.ia_web);
   $('#b-chat').classList.toggle('apagado', !sv.chat);
   document.querySelectorAll('[data-wiki]').forEach(a => { a.href = e.kiwix === '#' ? '#' : `${e.kiwix}/${a.dataset.wiki}/`; a.target = '_blank'; });
+  document.querySelectorAll('[data-art]').forEach(a => { a.href = e.kiwix === '#' ? '#' : `${e.kiwix}/content/${a.dataset.art}`; a.target = '_blank'; });
   const b = $('#b-emergencia');
   b.className = 'boton ' + (d.emergencia ? 'verde' : 'rojo');
   $('#t-emergencia').textContent = d.emergencia ? 'Desactivar modo emergencia' : 'Activar modo emergencia';
