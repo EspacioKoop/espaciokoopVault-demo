@@ -36,6 +36,7 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
 .boton .ico { font-size: 32px; }
 .boton small { font-weight: 500; font-size: 14px; color: var(--suave); }
 .boton.apagado { opacity: .5; }
+#b-emergencia { grid-column: 1 / -1; min-height: 96px; }
 .boton.rojo { background: var(--rojo); color: #fff; } .boton.rojo small { color: #ffe3e7; }
 .boton.verde { background: var(--verde); color: #fff; } .boton.verde small { color: #def7ea; }
 .lista { background: var(--tarjeta); border-radius: 18px; box-shadow: var(--sombra); overflow: hidden; }
@@ -78,6 +79,7 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
     <a class="boton" id="b-ia" target="_blank"><span class="ico">🤖</span>Preguntar a la IA<small>La IA de casa, sin internet</small></a>
     <a class="boton" id="b-chat" target="_blank"><span class="ico">💬</span>Chat de casa<small>Hablar entre nosotros sin internet</small></a>
     <a class="boton" href="#guias" onclick="abrirGuia('auxilios')"><span class="ico">🩹</span>Primeros auxilios<small>Qué hacer ya, paso a paso</small></a>
+    <a class="boton" href="#guias" onclick="abrirGuia('animales')"><span class="ico">🐾</span>Animales<small>Primeros auxilios veterinarios</small></a>
     <a class="boton" href="#guias" onclick="abrirGuia('agua')"><span class="ico">💧</span>Agua y comida<small>Potabilizar y conservar</small></a>
     <a class="boton" href="#guias" onclick="abrirGuia('comunicar')"><span class="ico">📡</span>Comunicarnos<small>Walkies, malla, radio</small></a>
     <a class="boton" href="#estado"><span class="ico">🔧</span>Estado de la casa<small>Qué funciona y qué no</small></a>
@@ -98,6 +100,18 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
       <li><b>Si respira pero no responde:</b> túmbalo de lado (posición lateral de seguridad) y vigila que siga respirando.</li>
     </ol>
     <p class="fuente">Más en la wiki: <a data-wiki="medlineplus.gov_es_all">MedlinePlus en español</a> · <a data-wiki="wikem_en_all">WikEM (urgencias)</a></p>
+  </div></details>
+  <details class="guia" id="g-animales"><summary>🐾 Animales heridos o enfermos</summary><div class="cuerpo">
+    <div class="importante">Un animal herido o asustado puede morder aunque sea el tuyo: protégete antes de tocarlo.</div>
+    <ol>
+      <li><b>Seguridad:</b> acércate despacio y háblale; si puede morder, ponle un bozal improvisado con una venda o cinta (nunca si vomita o le cuesta respirar).</li>
+      <li><b>Sangrado:</b> presiona fuerte con un paño limpio, igual que en personas; no quites el paño si empapa, pon otro encima.</li>
+      <li><b>Golpe de calor</b> (jadea mucho, babea, está flojo): a la sombra, mójalo con agua fresca, no helada, sobre todo cuello, axilas e ingles; dale agua a sorbos si la quiere.</li>
+      <li><b>Envenenamiento:</b> no le hagas vomitar sin consejo de un veterinario; guarda el envase o un trozo de lo que ha comido.</li>
+      <li><b>Traslado:</b> si puede tener algo roto o una lesión de espalda, muévelo sobre una tabla o una manta tensa, sin doblarlo.</li>
+      <li>En cuanto se pueda, veterinario o servicio de urgencias veterinarias.</li>
+    </ol>
+    <p class="fuente">Más en la wiki: <a data-wiki="wikipedia_es_all">Wikipedia (veterinaria)</a></p>
   </div></details>
   <details class="guia" id="g-agua"><summary>💧 Agua y comida</summary><div class="cuerpo">
     <ol>
