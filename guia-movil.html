@@ -1,0 +1,101 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emergencia · casa de ejemplo</title><style>
+:root {
+  --fondo: #f4f5f9; --tarjeta: #fff; --texto: #1b1e2b; --suave: #5f6681; --linea: #e1e4ee;
+  --verde: #12a065; --verde-f: #e3f6ec; --rojo: #dc3d52; --rojo-f: #fde9ec; --ambar: #c98200; --ambar-f: #fdf2dc;
+  --azul: #2c74d8; --azul-f: #e6effc; --morado: #7356e8; --morado-f: #eeeafd;
+  --sombra: 0 1px 2px rgba(20,24,40,.06), 0 6px 18px rgba(20,24,40,.07);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --fondo: #121419; --tarjeta: #1c1f28; --texto: #eef0f6; --suave: #a3a9bf; --linea: #2b2f3b;
+    --verde-f: #15362a; --rojo-f: #3d1b22; --ambar-f: #3a2b10; --azul-f: #172a45; --morado-f: #2a2346; --sombra: none; }
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: var(--fondo); color: var(--texto); font: 17px/1.45 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+.envoltura { max-width: 760px; margin: 0 auto; padding: 16px 16px 60px; }
+h1 { font-size: 24px; margin: 4px 0 0; }
+.casa { color: var(--suave); font-size: 15px; }
+h2 { font-size: 19px; margin: 28px 0 10px; }
+.aviso { border-radius: 18px; padding: 18px; margin: 16px 0; font-size: 18px; font-weight: 700; display: flex; gap: 14px; align-items: center; box-shadow: var(--sombra); }
+.aviso .ico { font-size: 34px; }
+.aviso small { display: block; font-weight: 500; font-size: 15px; margin-top: 2px; }
+.aviso.bien { background: var(--verde-f); color: var(--verde); }
+.aviso.mal { background: var(--rojo-f); color: var(--rojo); }
+.aviso.medio { background: var(--ambar-f); color: var(--ambar); }
+.botones { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (min-width: 640px) { .botones { grid-template-columns: repeat(3, 1fr); } }
+.boton { background: var(--tarjeta); border: 0; border-radius: 18px; padding: 18px 14px; min-height: 120px; text-align: left; color: var(--texto);
+  font: 700 17px system-ui, sans-serif; cursor: pointer; box-shadow: var(--sombra); text-decoration: none; display: flex; flex-direction: column; gap: 6px; }
+.boton .ico { font-size: 32px; }
+.boton small { font-weight: 500; font-size: 14px; color: var(--suave); }
+.boton.apagado { opacity: .5; }
+#b-emergencia { grid-column: 1 / -1; min-height: 96px; }
+.boton.rojo { background: var(--rojo); color: #fff; } .boton.rojo small { color: #ffe3e7; }
+.boton.verde { background: var(--verde); color: #fff; } .boton.verde small { color: #def7ea; }
+.lista { background: var(--tarjeta); border-radius: 18px; box-shadow: var(--sombra); overflow: hidden; }
+.fila { display: flex; gap: 12px; align-items: center; padding: 13px 16px; border-bottom: 1px solid var(--linea); }
+.fila:last-child { border-bottom: 0; }
+.punto { width: 14px; height: 14px; border-radius: 50%; flex: 0 0 14px; background: var(--suave); }
+.punto.si { background: var(--verde); } .punto.no { background: var(--rojo); } .punto.duerme { background: var(--ambar); }
+.fila .que { flex: 1; } .fila .que small { display: block; color: var(--suave); font-size: 14px; }
+.guia { background: var(--tarjeta); border-radius: 18px; box-shadow: var(--sombra); margin-bottom: 10px; }
+.guia summary { padding: 16px; font-weight: 700; cursor: pointer; list-style: none; display: flex; gap: 10px; align-items: center; }
+.guia summary::after { content: '›'; margin-left: auto; color: var(--suave); font-size: 22px; transition: transform .15s; }
+.guia[open] summary::after { transform: rotate(90deg); }
+.guia .cuerpo { padding: 0 16px 16px; }
+.guia ol, .guia ul { margin: 6px 0; padding-left: 22px; } .guia li { margin: 6px 0; }
+.guia .fuente { font-size: 14px; color: var(--suave); }
+.guia a { color: var(--azul); }
+.importante { background: var(--rojo-f); color: var(--rojo); border-radius: 12px; padding: 10px 12px; font-weight: 700; margin: 8px 0; }
+.pie { color: var(--suave); font-size: 14px; text-align: center; margin-top: 30px; }
+.ventana { position: fixed; inset: 0; background: rgba(10,12,20,.55); display: none; align-items: flex-end; justify-content: center; z-index: 9; }
+.ventana.abierta { display: flex; }
+.ventana .caja { background: var(--tarjeta); width: 100%; max-width: 560px; border-radius: 20px 20px 0 0; padding: 20px 18px 26px; }
+.ventana .caja p { margin: 8px 0 16px; color: var(--suave); }
+.ventana .caja .acciones { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ventana button { border: 0; border-radius: 14px; padding: 15px; font: 700 17px system-ui; cursor: pointer; background: var(--linea); color: var(--texto); }
+.ventana button.si { background: var(--rojo); color: #fff; }
+.demo { background: var(--morado-f); color: var(--morado); border-radius: 12px; padding: 10px 14px; font-size: 14px; font-weight: 600; margin-top: 10px; display: none; }
+</style></head><body><div class="envoltura">
+<h1>🛟 Emergencia · casa de ejemplo</h1><div class="casa">Copia para el móvil: funciona sin internet y sin servidor. Guárdala en Descargas.</div>
+<div class="aviso mal"><span class="ico">📞</span><div>112<small>Emergencias en toda Europa, también sin saldo.</small></div></div>
+<h2>Punto de encuentro</h2><div class="lista"><div class="fila"><div class="que">Plaza del ejemplo, junto a la fuente, a las 12:00 y a las 18:00</div></div></div>
+<h2>Contactos</h2><div class="lista"><div class="fila"><div class="que"><ul><li>Persona 1: 600 000 000</li><li>Persona 2: 600 000 001</li></ul></div></div></div>
+<h2>Guías rápidas</h2><details open class="guia" id="g-auxilios"><summary>🩹 Primeros auxilios</summary><div class="cuerpo">
+    <div class="importante">Si alguien no respira, sangra mucho o está inconsciente: llama al 112 si hay forma, y haz lo de abajo mientras llega ayuda.</div>
+    <ol>
+      <li><b>Protege:</b> que no haya más peligro para ti ni para la persona (tráfico, fuego, corriente).</li>
+      <li><b>Avisa:</b> 112. Di dónde estáis y qué ha pasado.</li>
+      <li><b>Socorre:</b> si no responde y no respira con normalidad, empieza la reanimación: manos en el centro del pecho, brazos rectos, compresiones fuertes y rápidas (unas 100-120 por minuto, hundiendo unos 5-6 cm) sin parar hasta que llegue ayuda o se recupere.</li>
+      <li><b>Sangrado fuerte:</b> presiona fuerte la herida con un paño limpio y no lo quites; si empapa, pon otro encima.</li>
+      <li><b>Si respira pero no responde:</b> túmbalo de lado (posición lateral de seguridad) y vigila que siga respirando.</li>
+    </ol>
+    <p class="fuente">Más en la wiki: <a data-wiki="medlineplus.gov_es_all">MedlinePlus en español</a> · <a data-wiki="wikem_en_all">WikEM (urgencias)</a></p>
+  </div></details><details open class="guia" id="g-animales"><summary>🐾 Animales heridos o enfermos</summary><div class="cuerpo">
+    <div class="importante">Un animal herido o asustado puede morder aunque sea el tuyo: protégete antes de tocarlo.</div>
+    <ol>
+      <li><b>Seguridad:</b> acércate despacio y háblale; si puede morder, ponle un bozal improvisado con una venda o cinta (nunca si vomita o le cuesta respirar).</li>
+      <li><b>Sangrado:</b> presiona fuerte con un paño limpio, igual que en personas; no quites el paño si empapa, pon otro encima.</li>
+      <li><b>Golpe de calor</b> (jadea mucho, babea, está flojo): a la sombra, mójalo con agua fresca, no helada, sobre todo cuello, axilas e ingles; dale agua a sorbos si la quiere.</li>
+      <li><b>Envenenamiento:</b> no le hagas vomitar sin consejo de un veterinario; guarda el envase o un trozo de lo que ha comido.</li>
+      <li><b>Traslado:</b> si puede tener algo roto o una lesión de espalda, muévelo sobre una tabla o una manta tensa, sin doblarlo.</li>
+      <li>En cuanto se pueda, veterinario o servicio de urgencias veterinarias.</li>
+    </ol>
+    <p class="fuente">Más en la wiki: <a data-wiki="wikivet.net_en_all">WikiVet (veterinaria)</a> · <a data-wiki="pets.stackexchange.com_en_all">Mascotas</a></p>
+  </div></details><details open class="guia" id="g-agua"><summary>💧 Agua y comida</summary><div class="cuerpo">
+    <ol>
+      <li><b>Agua primero:</b> una persona necesita unos 3 litros al día para beber y cocinar. Guarda agua antes de que falte.</li>
+      <li><b>Potabilizar:</b> hervir el agua al menos 1 minuto (3 minutos en alta montaña) es lo más seguro. Si no se puede hervir, lejía sin perfume según la etiqueta y espera 30 minutos.</li>
+      <li><b>Comida:</b> primero lo que se estropea (nevera), después lo congelado y por último las conservas. Una nevera cerrada aguanta frío unas 4 horas sin luz.</li>
+    </ol>
+    <p class="fuente">Más en la wiki: <a data-wiki="zimgit-water_en">Agua y saneamiento</a> · <a data-wiki="zimgit-food-preparation_en">Conservar alimentos</a> · <a data-wiki="www.ready.gov_es">Ready.gov en español</a></p>
+  </div></details><details open class="guia" id="g-comunicar"><summary>📡 Comunicarnos sin internet</summary><div class="cuerpo">
+    <ol>
+      <li><b>En casa:</b> el chat de casa (botón 💬) funciona con el wifi aunque no haya internet.</li>
+      <li><b>Entre móviles cerca:</b> Briar, por Bluetooth y wifi, sin cobertura.</li>
+      <li><b>Walkies PMR446:</b> canal acordado de antemano; hablar corto y decir quién eres.</li>
+      <li><b>Nodos Meshtastic (LoRa):</b> mensajes a varios kilómetros sin infraestructura.</li>
+      <li><b>Punto de encuentro:</b> si no hay forma de comunicarse, id al punto acordado a la hora acordada.</li>
+    </ol>
+  </div></details>
+<div class="pie">Generada el 29-10-2026 · espaciokoopVault</div></div></body></html>
