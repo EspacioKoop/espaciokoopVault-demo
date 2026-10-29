@@ -63,9 +63,13 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
 .ventana button { border: 0; border-radius: 14px; padding: 15px; font: 700 17px system-ui; cursor: pointer; background: var(--linea); color: var(--texto); }
 .ventana button.si { background: var(--rojo); color: #fff; }
 .demo { background: var(--morado-f); color: var(--morado); border-radius: 12px; padding: 10px 14px; font-size: 14px; font-weight: 600; margin-top: 10px; display: none; }
+.biblioteca { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin: 10px 0 18px; }
+.libro { display: block; padding: 12px 14px; border-radius: 14px; background: var(--tarjeta, #222); color: inherit; text-decoration: none; box-shadow: var(--sombra); }
+.libro b { display: block; font-size: 17px; } .libro small { display: block; color: var(--suave); font-size: 14px; margin-top: 3px; }
 </style>
 </head>
 <body>
+<noscript><p style="background:#c62828;color:#fff;padding:12px;font-size:20px">Este aparato no ejecuta la página completa: abre la <a style="color:#fff" href="simple">versión sencilla</a>.</p></noscript>
 <div class="envoltura">
   <h1>🛟 espaciokoopVault</h1>
   <div class="casa" id="casa">Cargando…</div>
@@ -84,11 +88,60 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
     <a class="boton" href="#guias" onclick="abrirGuia('comunicar')"><span class="ico">📡</span>Comunicarnos<small>Walkies, malla, radio</small></a>
     <a class="boton" href="#estado"><span class="ico">🔧</span>Estado de la casa<small>Qué funciona y qué no</small></a>
     <a class="boton" id="b-movil" href="guia-movil.html"><span class="ico">📲</span>Guardar en el móvil<small>Guías y contactos, sin internet</small></a>
+    <a class="boton" id="b-simple" href="simple"><span class="ico">📟</span>Versión sencilla<small>Para tabletas viejas, teles y lectores de tinta</small></a>
     <button class="boton rojo" id="b-emergencia"><span class="ico">🚨</span><span id="t-emergencia">Activar modo emergencia</span><small id="s-emergencia">Todo pasa a funcionar sin internet</small></button>
   </div>
 
   <h2 id="estado">Estado de la casa</h2>
   <div class="lista" id="lista"></div>
+
+<!-- BIBLIOTECA (generado por scripts/biblioteca-inicio.py desde el portal: no editar a mano) -->
+  <h2 id="biblioteca">📚 Biblioteca en español</h2>
+  <div class="biblioteca">
+      <a class="libro" data-wiki="wikipedia_es_all"><b>📖 Enciclopedia</b><small>Todo el conocimiento humano. 2 millones de artículos.</small></a>
+      <a class="libro" data-wiki="medlineplus.gov_es_all"><b>⚕️ Medicina y Salud</b><small>Enfermedades, síntomas, medicamentos. Fuente oficial médica.</small></a>
+      <a class="libro" data-wiki="www.ready.gov_es"><b>🚨 Emergencias FEMA</b><small>Terremoto, inundación, incendio, evacuación. Protocolo oficial FEMA.</small></a>
+      <a class="libro" data-wiki="ifixit_es_all"><b>🔧 Reparaciones</b><small>Guías paso a paso para reparar móviles, ordenadores y electrodomésticos.</small></a>
+      <a class="libro" data-wiki="wikibooks_es_all"><b>🛠️ Manuales y Oficios</b><small>Electricidad, fontanería, carpintería, mecánica básica.</small></a>
+      <a class="libro" data-wiki="wikipedia_es_medicine"><b>🧬 Artículos Médicos</b><small>Anatomía, patologías, cirugías. Más técnico que MedlinePlus.</small></a>
+      <a class="libro" data-wiki="gutenberg_es_all"><b>📚 Libros Clásicos</b><small>+1.000 libros: ciencia, medicina histórica, filosofía.</small></a>
+      <a class="libro" data-wiki="wikivoyage_es_all"><b>🗺️ Rutas y Movilidad</b><small>Ciudades, rutas de transporte. Para moverse sin GPS.</small></a>
+      <a class="libro" data-wiki="wikipedia_es_molcell"><b>🌿 Biología y Botánica</b><small>Plantas, hongos. Para identificar flora comestible o medicinal.</small></a>
+      <a class="libro" data-wiki="wiktionary_es_all"><b>📖 Diccionario</b><small>Definiciones y términos técnicos, médicos y científicos.</small></a>
+      <a class="libro" data-wiki="wikipedia_es_physics"><b>⚡ Física</b><small>Electricidad, mecánica, termodinámica.</small></a>
+      <a class="libro" data-wiki="wikipedia_es_chemistry"><b>🧪 Química</b><small>Reacciones, materiales, compuestos.</small></a>
+      <a class="libro" data-wiki="wikipedia_es_mathematics"><b>🔢 Matemáticas</b><small>Cálculo, estadística, geometría.</small></a>
+      <a class="libro" data-wiki="wikipedia_es_geography"><b>🌍 Geografía</b><small>Climas, ríos, ecosistemas. Para conocer el entorno.</small></a>
+      <a class="libro" data-wiki="wikipedia_es_history"><b>📜 Historia</b><small>Historia universal. Técnicas históricas de supervivencia.</small></a>
+      <a class="libro" data-wiki="wikipedia_es_computer"><b>💻 Informática</b><small>Redes, sistemas. Para mantener equipos sin internet.</small></a>
+      <a class="libro" data-wiki="wikipedia_es_climate-change"><b>🌡️ Clima</b><small>Cambio climático, ecosistemas.</small></a>
+      <a class="libro" data-wiki="phet_es_all"><b>🔬 Simulaciones Científicas</b><small>Física, química, biología interactiva.</small></a>
+      <a class="libro" data-wiki="freecodecamp_es_all"><b>💻 Programación</b><small>Aprende a programar para montar sistemas con electrónica.</small></a>
+  </div>
+  <details class="guia" id="g-ingles"><summary>🇬🇧 En inglés: lo que aún no existe en español (18)</summary><div class="cuerpo">
+    <p class="fuente">Agua, nudos, urgencias, veterinaria… Están en inglés hasta que los traduzcamos (fase 4 del plan). Con el traductor del navegador o preguntando a la IA de casa se entienden bien.</p>
+    <div class="biblioteca">
+      <a class="libro" data-wiki="zimgit-post-disaster_en"><b>⚠️ Post-Desastre</b><small>Agua segura, refugio, alimentos y primeros auxilios tras una catástrofe.</small></a>
+      <a class="libro" data-wiki="outdoors.stackexchange.com_en_all"><b>🏕️ Supervivencia Outdoor</b><small>Orientación sin GPS, refugio, fuego, señalización, caza y pesca.</small></a>
+      <a class="libro" data-wiki="wikem_en_all"><b>🏥 Urgencias Médicas</b><small>Protocolos reales de urgencias para situaciones graves sin médico.</small></a>
+      <a class="libro" data-wiki="zimgit-knots_en"><b>🪢 Nudos</b><small>Enciclopedia de nudos con ilustraciones. Supervivencia, navegación.</small></a>
+      <a class="libro" data-wiki="diy.stackexchange.com_en_all"><b>🏠 Construcción y Hogar</b><small>Electricidad, fontanería, carpintería. Miles de Q&amp;A reales.</small></a>
+      <a class="libro" data-wiki="mechanics.stackexchange.com_en_all"><b>🚗 Mecánica Vehículos</b><small>Reparación y mantenimiento de coches. Diagnóstico sin taller.</small></a>
+      <a class="libro" data-wiki="engineering.stackexchange.com_en_all"><b>⚙️ Ingeniería Práctica</b><small>Estructuras, materiales, sistemas. Para construir infraestructura básica.</small></a>
+      <a class="libro" data-wiki="gardening.stackexchange.com_en_all"><b>🌱 Agricultura y Huerto</b><small>Cultivos, plagas, suelos. Para producir comida.</small></a>
+      <a class="libro" data-wiki="energypedia_en_all"><b>☀️ Energía Solar</b><small>Sistemas solares y off-grid. Electricidad sin red.</small></a>
+      <a class="libro" data-wiki="appropedia_en_all"><b>🌿 Tecnología Sostenible</b><small>Construcción sostenible, permacultura, agua y saneamiento barato.</small></a>
+      <a class="libro" data-wiki="cooking.stackexchange.com_en_all"><b>🍳 Cocina y Conservas</b><small>Fermentación, encurtidos, ahumado. Para que la comida dure.</small></a>
+      <a class="libro" data-wiki="zimgit-food-preparation_en"><b>🥫 Conservar Alimentos</b><small>Enlatado, salazón, deshidratación. Sin electricidad.</small></a>
+      <a class="libro" data-wiki="zimgit-water_en"><b>💧 Agua y Saneamiento</b><small>Purificación, filtrado, pozos. Agua segura sin infraestructura.</small></a>
+      <a class="libro" data-wiki="medicalsciences.stackexchange.com_en_all"><b>🔬 Ciencias Médicas</b><small>Preguntas médicas avanzadas respondidas por profesionales.</small></a>
+      <a class="libro" data-wiki="wikivet.net_en_all"><b>🐾 Veterinaria</b><small>Enciclopedia veterinaria de las facultades: enfermedades, urgencias y cuidados de animales.</small></a>
+      <a class="libro" data-wiki="pets.stackexchange.com_en_all"><b>🐕 Mascotas</b><small>Preguntas y respuestas sobre el cuidado de perros, gatos y otras mascotas.</small></a>
+      <a class="libro" data-wiki="restarters_en_all"><b>🔌 Reparación Electrónica</b><small>Reparar dispositivos, circuitos, soldadura.</small></a>
+      <a class="libro" data-wiki="survivors_en_all"><b>🏕️ Técnicas Supervivencia</b><small>Refugio, señalización, fuego y agua en naturaleza.</small></a>
+    </div>
+  </div></details>
+<!-- /BIBLIOTECA -->
 
   <h2 id="guias">Guías rápidas</h2>
   <details class="guia" id="g-auxilios"><summary>🩹 Primeros auxilios</summary><div class="cuerpo">
@@ -100,7 +153,7 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
       <li><b>Sangrado fuerte:</b> presiona fuerte la herida con un paño limpio y no lo quites; si empapa, pon otro encima.</li>
       <li><b>Si respira pero no responde:</b> túmbalo de lado (posición lateral de seguridad) y vigila que siga respirando.</li>
     </ol>
-    <p class="fuente">Más en la wiki: <a data-wiki="medlineplus.gov_es_all">MedlinePlus en español</a> · <a data-wiki="wikem_en_all">WikEM (urgencias)</a></p>
+    <p class="fuente">Más en la wiki: <a data-wiki="medlineplus.gov_es_all">MedlinePlus en español</a> · <a data-wiki="wikem_en_all">WikEM (urgencias) 🇬🇧</a></p>
   </div></details>
   <details class="guia" id="g-animales"><summary>🐾 Animales heridos o enfermos</summary><div class="cuerpo">
     <div class="importante">Un animal herido o asustado puede morder aunque sea el tuyo: protégete antes de tocarlo.</div>
@@ -112,7 +165,7 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
       <li><b>Traslado:</b> si puede tener algo roto o una lesión de espalda, muévelo sobre una tabla o una manta tensa, sin doblarlo.</li>
       <li>En cuanto se pueda, veterinario o servicio de urgencias veterinarias.</li>
     </ol>
-    <p class="fuente">Más en la wiki: <a data-wiki="wikivet.net_en_all">WikiVet (veterinaria)</a> · <a data-wiki="pets.stackexchange.com_en_all">Mascotas</a></p>
+    <p class="fuente">Más en la wiki: <a data-wiki="wikivet.net_en_all">WikiVet (veterinaria) 🇬🇧</a> · <a data-wiki="pets.stackexchange.com_en_all">Mascotas 🇬🇧</a></p>
   </div></details>
   <details class="guia" id="g-agua"><summary>💧 Agua y comida</summary><div class="cuerpo">
     <ol>
@@ -120,7 +173,7 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
       <li><b>Potabilizar:</b> hervir el agua al menos 1 minuto (3 minutos en alta montaña) es lo más seguro. Si no se puede hervir, lejía sin perfume según la etiqueta y espera 30 minutos.</li>
       <li><b>Comida:</b> primero lo que se estropea (nevera), después lo congelado y por último las conservas. Una nevera cerrada aguanta frío unas 4 horas sin luz.</li>
     </ol>
-    <p class="fuente">Más en la wiki: <a data-wiki="zimgit-water_en">Agua y saneamiento</a> · <a data-wiki="zimgit-food-preparation_en">Conservar alimentos</a> · <a data-wiki="www.ready.gov_es">Ready.gov en español</a></p>
+    <p class="fuente">Más en la wiki: <a data-wiki="zimgit-water_en">Agua y saneamiento 🇬🇧</a> · <a data-wiki="zimgit-food-preparation_en">Conservar alimentos 🇬🇧</a> · <a data-wiki="www.ready.gov_es">Ready.gov en español</a></p>
   </div></details>
   <details class="guia" id="g-comunicar"><summary>📡 Comunicarnos sin internet</summary><div class="cuerpo">
     <ol>

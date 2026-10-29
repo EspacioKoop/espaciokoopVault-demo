@@ -56,12 +56,37 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
 .ventana button { border: 0; border-radius: 14px; padding: 15px; font: 700 17px system-ui; cursor: pointer; background: var(--linea); color: var(--texto); }
 .ventana button.si { background: var(--rojo); color: #fff; }
 .demo { background: var(--morado-f); color: var(--morado); border-radius: 12px; padding: 10px 14px; font-size: 14px; font-weight: 600; margin-top: 10px; display: none; }
+.biblioteca { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin: 10px 0 18px; }
+.libro { display: block; padding: 12px 14px; border-radius: 14px; background: var(--tarjeta, #222); color: inherit; text-decoration: none; box-shadow: var(--sombra); }
+.libro b { display: block; font-size: 17px; } .libro small { display: block; color: var(--suave); font-size: 14px; margin-top: 3px; }
 </style></head><body><div class="envoltura">
 <h1>🛟 Emergencia · casa de ejemplo</h1><div class="casa">Copia para el móvil: funciona sin internet y sin servidor. Guárdala en Descargas.</div>
 <div class="aviso mal"><span class="ico">📞</span><div>112<small>Emergencias en toda Europa, también sin saldo.</small></div></div>
 <h2>Punto de encuentro</h2><div class="lista"><div class="fila"><div class="que">Plaza del ejemplo, junto a la fuente, a las 12:00 y a las 18:00</div></div></div>
 <h2>Contactos</h2><div class="lista"><div class="fila"><div class="que"><ul><li>Persona 1: 600 000 000</li><li>Persona 2: 600 000 001</li></ul></div></div></div>
-<h2>Guías rápidas</h2><details open class="guia" id="g-auxilios"><summary>🩹 Primeros auxilios</summary><div class="cuerpo">
+<h2>Guías rápidas</h2><details open class="guia" id="g-ingles"><summary>🇬🇧 En inglés: lo que aún no existe en español (18)</summary><div class="cuerpo">
+    <p class="fuente">Agua, nudos, urgencias, veterinaria… Están en inglés hasta que los traduzcamos (fase 4 del plan). Con el traductor del navegador o preguntando a la IA de casa se entienden bien.</p>
+    <div class="biblioteca">
+      <a class="libro" data-wiki="zimgit-post-disaster_en"><b>⚠️ Post-Desastre</b><small>Agua segura, refugio, alimentos y primeros auxilios tras una catástrofe.</small></a>
+      <a class="libro" data-wiki="outdoors.stackexchange.com_en_all"><b>🏕️ Supervivencia Outdoor</b><small>Orientación sin GPS, refugio, fuego, señalización, caza y pesca.</small></a>
+      <a class="libro" data-wiki="wikem_en_all"><b>🏥 Urgencias Médicas</b><small>Protocolos reales de urgencias para situaciones graves sin médico.</small></a>
+      <a class="libro" data-wiki="zimgit-knots_en"><b>🪢 Nudos</b><small>Enciclopedia de nudos con ilustraciones. Supervivencia, navegación.</small></a>
+      <a class="libro" data-wiki="diy.stackexchange.com_en_all"><b>🏠 Construcción y Hogar</b><small>Electricidad, fontanería, carpintería. Miles de Q&amp;A reales.</small></a>
+      <a class="libro" data-wiki="mechanics.stackexchange.com_en_all"><b>🚗 Mecánica Vehículos</b><small>Reparación y mantenimiento de coches. Diagnóstico sin taller.</small></a>
+      <a class="libro" data-wiki="engineering.stackexchange.com_en_all"><b>⚙️ Ingeniería Práctica</b><small>Estructuras, materiales, sistemas. Para construir infraestructura básica.</small></a>
+      <a class="libro" data-wiki="gardening.stackexchange.com_en_all"><b>🌱 Agricultura y Huerto</b><small>Cultivos, plagas, suelos. Para producir comida.</small></a>
+      <a class="libro" data-wiki="energypedia_en_all"><b>☀️ Energía Solar</b><small>Sistemas solares y off-grid. Electricidad sin red.</small></a>
+      <a class="libro" data-wiki="appropedia_en_all"><b>🌿 Tecnología Sostenible</b><small>Construcción sostenible, permacultura, agua y saneamiento barato.</small></a>
+      <a class="libro" data-wiki="cooking.stackexchange.com_en_all"><b>🍳 Cocina y Conservas</b><small>Fermentación, encurtidos, ahumado. Para que la comida dure.</small></a>
+      <a class="libro" data-wiki="zimgit-food-preparation_en"><b>🥫 Conservar Alimentos</b><small>Enlatado, salazón, deshidratación. Sin electricidad.</small></a>
+      <a class="libro" data-wiki="zimgit-water_en"><b>💧 Agua y Saneamiento</b><small>Purificación, filtrado, pozos. Agua segura sin infraestructura.</small></a>
+      <a class="libro" data-wiki="medicalsciences.stackexchange.com_en_all"><b>🔬 Ciencias Médicas</b><small>Preguntas médicas avanzadas respondidas por profesionales.</small></a>
+      <a class="libro" data-wiki="wikivet.net_en_all"><b>🐾 Veterinaria</b><small>Enciclopedia veterinaria de las facultades: enfermedades, urgencias y cuidados de animales.</small></a>
+      <a class="libro" data-wiki="pets.stackexchange.com_en_all"><b>🐕 Mascotas</b><small>Preguntas y respuestas sobre el cuidado de perros, gatos y otras mascotas.</small></a>
+      <a class="libro" data-wiki="restarters_en_all"><b>🔌 Reparación Electrónica</b><small>Reparar dispositivos, circuitos, soldadura.</small></a>
+      <a class="libro" data-wiki="survivors_en_all"><b>🏕️ Técnicas Supervivencia</b><small>Refugio, señalización, fuego y agua en naturaleza.</small></a>
+    </div>
+  </div></details><details open class="guia" id="g-auxilios"><summary>🩹 Primeros auxilios</summary><div class="cuerpo">
     <div class="importante">Si alguien no respira, sangra mucho o está inconsciente: llama al 112 si hay forma, y haz lo de abajo mientras llega ayuda.</div>
     <ol>
       <li><b>Protege:</b> que no haya más peligro para ti ni para la persona (tráfico, fuego, corriente).</li>
@@ -70,7 +95,7 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
       <li><b>Sangrado fuerte:</b> presiona fuerte la herida con un paño limpio y no lo quites; si empapa, pon otro encima.</li>
       <li><b>Si respira pero no responde:</b> túmbalo de lado (posición lateral de seguridad) y vigila que siga respirando.</li>
     </ol>
-    <p class="fuente">Más en la wiki: <a data-wiki="medlineplus.gov_es_all">MedlinePlus en español</a> · <a data-wiki="wikem_en_all">WikEM (urgencias)</a></p>
+    <p class="fuente">Más en la wiki: <a data-wiki="medlineplus.gov_es_all">MedlinePlus en español</a> · <a data-wiki="wikem_en_all">WikEM (urgencias) 🇬🇧</a></p>
   </div></details><details open class="guia" id="g-animales"><summary>🐾 Animales heridos o enfermos</summary><div class="cuerpo">
     <div class="importante">Un animal herido o asustado puede morder aunque sea el tuyo: protégete antes de tocarlo.</div>
     <ol>
@@ -81,14 +106,14 @@ h2 { font-size: 19px; margin: 28px 0 10px; }
       <li><b>Traslado:</b> si puede tener algo roto o una lesión de espalda, muévelo sobre una tabla o una manta tensa, sin doblarlo.</li>
       <li>En cuanto se pueda, veterinario o servicio de urgencias veterinarias.</li>
     </ol>
-    <p class="fuente">Más en la wiki: <a data-wiki="wikivet.net_en_all">WikiVet (veterinaria)</a> · <a data-wiki="pets.stackexchange.com_en_all">Mascotas</a></p>
+    <p class="fuente">Más en la wiki: <a data-wiki="wikivet.net_en_all">WikiVet (veterinaria) 🇬🇧</a> · <a data-wiki="pets.stackexchange.com_en_all">Mascotas 🇬🇧</a></p>
   </div></details><details open class="guia" id="g-agua"><summary>💧 Agua y comida</summary><div class="cuerpo">
     <ol>
       <li><b>Agua primero:</b> una persona necesita unos 3 litros al día para beber y cocinar. Guarda agua antes de que falte.</li>
       <li><b>Potabilizar:</b> hervir el agua al menos 1 minuto (3 minutos en alta montaña) es lo más seguro. Si no se puede hervir, lejía sin perfume según la etiqueta y espera 30 minutos.</li>
       <li><b>Comida:</b> primero lo que se estropea (nevera), después lo congelado y por último las conservas. Una nevera cerrada aguanta frío unas 4 horas sin luz.</li>
     </ol>
-    <p class="fuente">Más en la wiki: <a data-wiki="zimgit-water_en">Agua y saneamiento</a> · <a data-wiki="zimgit-food-preparation_en">Conservar alimentos</a> · <a data-wiki="www.ready.gov_es">Ready.gov en español</a></p>
+    <p class="fuente">Más en la wiki: <a data-wiki="zimgit-water_en">Agua y saneamiento 🇬🇧</a> · <a data-wiki="zimgit-food-preparation_en">Conservar alimentos 🇬🇧</a> · <a data-wiki="www.ready.gov_es">Ready.gov en español</a></p>
   </div></details><details open class="guia" id="g-comunicar"><summary>📡 Comunicarnos sin internet</summary><div class="cuerpo">
     <ol>
       <li><b>En casa:</b> el chat de casa (botón 💬) funciona con el wifi aunque no haya internet.</li>
